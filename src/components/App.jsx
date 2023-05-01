@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
-import ContactItem from './ContactItem/ContactItem';
+import ContactItem from './ContactItem/ContactItem.jsx ';
 import Finder from './Finder/Finder';
 
 const mainStyle = {

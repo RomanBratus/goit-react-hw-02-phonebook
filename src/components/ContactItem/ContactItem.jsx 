@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContactItem = ({ contacts, deleteContactOn }) => {
+const ContactItem = ({ contacts, onDeleteContact }) => {
   return contacts.map(({ name, number, id }) => (
     <li
       style={{
@@ -26,7 +26,7 @@ const ContactItem = ({ contacts, deleteContactOn }) => {
         }}
         type="button"
         onClick={() => {
-          deleteContactOn(id);
+          onDeleteContact(id);
         }}
       >
         Delete
@@ -34,6 +34,7 @@ const ContactItem = ({ contacts, deleteContactOn }) => {
     </li>
   ));
 };
+
 
 ContactItem.propTypes = {
   contacts: PropTypes.arrayOf(
