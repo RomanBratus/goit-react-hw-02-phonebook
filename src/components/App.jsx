@@ -13,6 +13,7 @@ const mainStyle = {
   color: '#3d2f26ed',
   marginLeft: '30px',
 };
+
 class App extends Component {
   state = {
     contacts: [
@@ -21,22 +22,24 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = data => {
     const { contacts } = this.state;
-    contacts.find(
-      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    const isExist =  contacts.find(
+      (contact) => contact.name.toLowerCase() === data.name.toLowerCase()
     )
-      ? alert(`${data.name} is already in contacts`)
-      : this.setState(prevState => ({
+
+    if (isExist) {
+      alert(`${data.name} is already in contacts`)
+      return;
+    }
+
+    this.setState(prevState => ({
         contacts: [data, ...prevState.contacts],
       }));
-    console.log(contacts);
   };
+
   getListContacts = () => {
     const { contacts, filter } = this.state;
     const normalizeFilter = filter.toLowerCase();
@@ -45,6 +48,7 @@ class App extends Component {
       contact.name.toLowerCase().includes(normalizeFilter)
     );
   };
+
   changeFilter = event => {
     this.setState({ filter: event.currentTarget.value });
   };

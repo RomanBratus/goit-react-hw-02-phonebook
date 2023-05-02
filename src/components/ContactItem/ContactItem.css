@@ -1,0 +1,21 @@
+.contact-item {
+  display: flex;
+  padding: 0;
+  margin-top: 20px;
+  justify-content: left;
+}
+
+.contact-item span {
+  margin-left: 10px;
+}
+
+.contact-item button {
+  box-sizing: border-box;
+  width: 100px;
+  height: 30px;
+  background: #808e9e;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-left: 15px;
+}

@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ContactItem from '../ContactItem/ContactItem';
+import './ContactList.css';
 
-const ContactList = ({ children }) => {
+const ContactList = ({ contacts, deleteContactOn }) => {
   return (
-    <ul
-      style={{
-        padding: '0',
-      }}
-    >
-      {children}
+    <ul>
+      {contacts.map((contact) => (<ContactItem contact={contact} deleteContactOn={deleteContactOn}/>))}
     </ul>
   );
 };
 
 ContactList.propTypes = {
-  children: PropTypes.node.isRequired,
+  contacts: PropTypes.array.isRequired,
+  deleteContactOn: PropTypes.func.isRequired,
 };
 
 export default ContactList;
