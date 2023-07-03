@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import ContactItem from './ContactItem/ContactItem';
@@ -22,40 +22,50 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    filter: '',
   };
 
-  addContact = data => {
+  addContact = (name, number) => {
     const { contacts } = this.state;
-    const isExist =  contacts.find(
-      (contact) => contact.name.toLowerCase() === data.name.toLowerCase()
-    )
+    const contact = {
+      id: `id-${contacts.length + 1}`,
+      name,
+      number,
+    };
 
-    if (isExist) {
-      alert(`${data.name} is already in contacts`)
-      return;
-    }
+    const isContactExist = contacts.some(
+      (contact) =>
+        contact.name.toLowerCase() === name.toLowerCase() ||
+        contact.number === number
+    );
 
-    this.setState(prevState => ({
-        contacts: [data, ...prevState.contacts],
+    if (isContactExist) {
+      alert(`${name} or ${number} is already in contacts`);
+    } else {
+      this.setState((prevState) => ({
+        contacts: [contact, ...prevState.contacts],
       }));
+    }
   };
 
   getListContacts = () => {
     const { contacts, filter } = this.state;
-    const normalizeFilter = filter.toLowerCase();
+    const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizeFilter)
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
-  changeFilter = event => {
-    this.setState({ filter: event.currentTarget.value });
+  changeFilter = (event) => {
+    this.setState({ filter: event.target.value });
   };
 
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+  deleteContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
     }));
   };
 
