@@ -36,7 +36,6 @@ const ContactItem = ({ contacts, deleteContactOn }) => {
 };
 
 ContactItem.propTypes = {
-  // contacts: PropTypes.array.isRequired,
 
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
